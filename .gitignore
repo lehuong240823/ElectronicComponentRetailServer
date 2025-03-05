@@ -42,3 +42,4 @@ out/
 ### Local Configuration ###
 .env
 Generator.kt
+GeneratorKt.run.xml
