@@ -1,0 +1,12 @@
+name: Trigger Render API
+
+on:
+  schedule:
+    - cron: "*/14 * * * *" # Runs every 14 minutes
+
+jobs:
+  trigger-render-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Render API
+        run: curl -X GET https://electroniccomponentretailserver-latest.onrender.com/health
