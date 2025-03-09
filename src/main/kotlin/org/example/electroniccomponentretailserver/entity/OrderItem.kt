@@ -4,25 +4,29 @@ import jakarta.persistence.*
 import org.hibernate.annotations.OnDelete
 import org.hibernate.annotations.OnDeleteAction
 import java.math.BigDecimal
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 @Entity
-@Table(name = "order_item", schema = "e-commerce", indexes = [
-    Index(name = "order_id", columnList = "order_id"),
-    Index(name = "product_id", columnList = "product_id")
-])
+@Table(
+    name = "order_item", schema = "e-commerce", indexes = [
+        Index(name = "order_id", columnList = "order_id"),
+        Index(name = "product_id", columnList = "product_id")
+    ]
+)
 class OrderItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_item_id", nullable = false)
     var id: Int? = null
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "order_id", nullable = false)
+    @JsonIgnore
     var order: Order? = null
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "product_id")
+    @JsonIgnore
     var product: Product? = null
 
     @Column(name = "product_name")

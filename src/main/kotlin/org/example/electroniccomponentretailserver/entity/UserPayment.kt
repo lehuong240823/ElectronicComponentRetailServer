@@ -1,9 +1,9 @@
 package org.example.electroniccomponentretailserver.entity
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import org.hibernate.annotations.OnDelete
 import org.hibernate.annotations.OnDeleteAction
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 @Entity
 @Table(name = "user_payment", schema = "e-commerce", indexes = [
@@ -12,7 +12,6 @@ import org.hibernate.annotations.OnDeleteAction
 ])
 class UserPayment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_payment_id", nullable = false)
     var id: Int? = null
 

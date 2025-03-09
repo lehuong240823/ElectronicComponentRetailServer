@@ -2,7 +2,10 @@ package org.example.electroniccomponentretailserver.controller
 
 import org.example.electroniccomponentretailserver.entity.UserAddress
 import org.example.electroniccomponentretailserver.service.UserAddressService
-import org.springframework.http.*
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -10,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 class UserAddressController(private val userAddressService: UserAddressService) {
 
     @GetMapping
-    fun getAllUserAddresss(): List<UserAddress> = userAddressService.getAllUserAddresss()
+    fun getAllUserAddresss(@PageableDefault(size = 10) pageable: Pageable): Page<UserAddress> = userAddressService.getAllUserAddresss(pageable)
 
     @GetMapping("/{id}")
     fun getUserAddressById(@PathVariable id: Int): ResponseEntity<UserAddress> {

@@ -2,7 +2,10 @@ package org.example.electroniccomponentretailserver.controller
 
 import org.example.electroniccomponentretailserver.entity.OrderStatus
 import org.example.electroniccomponentretailserver.service.OrderStatusService
-import org.springframework.http.*
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -10,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 class OrderStatusController(private val orderStatusService: OrderStatusService) {
 
     @GetMapping
-    fun getAllOrderStatuss(): List<OrderStatus> = orderStatusService.getAllOrderStatuss()
+    fun getAllOrderStatuss(@PageableDefault(size = 10) pageable: Pageable): Page<OrderStatus> = orderStatusService.getAllOrderStatuss(pageable)
 
     @GetMapping("/{id}")
     fun getOrderStatusById(@PathVariable id: Byte): ResponseEntity<OrderStatus> {

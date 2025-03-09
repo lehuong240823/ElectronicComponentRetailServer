@@ -2,7 +2,10 @@ package org.example.electroniccomponentretailserver.controller
 
 import org.example.electroniccomponentretailserver.entity.ReviewImage
 import org.example.electroniccomponentretailserver.service.ReviewImageService
-import org.springframework.http.*
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -10,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 class ReviewImageController(private val reviewImageService: ReviewImageService) {
 
     @GetMapping
-    fun getAllReviewImages(): List<ReviewImage> = reviewImageService.getAllReviewImages()
+    fun getAllReviewImages(@PageableDefault(size = 10) pageable: Pageable): Page<ReviewImage> = reviewImageService.getAllReviewImages(pageable)
 
     @GetMapping("/{id}")
     fun getReviewImageById(@PathVariable id: Int): ResponseEntity<ReviewImage> {

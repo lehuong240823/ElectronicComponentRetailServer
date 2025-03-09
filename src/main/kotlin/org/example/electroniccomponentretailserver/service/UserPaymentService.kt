@@ -3,12 +3,14 @@ package org.example.electroniccomponentretailserver.service
 import org.example.electroniccomponentretailserver.entity.UserPayment
 import org.example.electroniccomponentretailserver.repository.UserPaymentRepository
 import org.example.electroniccomponentretailserver.updateEntity
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
 class UserPaymentService(private val userPaymentRepository: UserPaymentRepository) {
 
-    fun getAllUserPayments(): List<UserPayment> = userPaymentRepository.findAll()
+    fun getAllUserPayments(pageable: Pageable): Page<UserPayment> = userPaymentRepository.findAll(pageable)
 
     fun getUserPaymentById(id: Int): UserPayment? = userPaymentRepository.findById(id).orElse(null)
 

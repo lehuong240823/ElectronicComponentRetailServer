@@ -1,9 +1,9 @@
 package org.example.electroniccomponentretailserver.entity
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import org.hibernate.annotations.ColumnDefault
-import java.time.LocalDateTime
+import java.time.Instant
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 @Entity
 @Table(name = "account", schema = "e-commerce", indexes = [
@@ -14,7 +14,6 @@ import java.time.LocalDateTime
 ])
 class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id", nullable = false)
     var id: Int? = null
 
@@ -37,5 +36,5 @@ class Account {
 
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "create_time", nullable = false)
-    var createTime: LocalDateTime? = null
+    var createTime: Instant? = null
 }

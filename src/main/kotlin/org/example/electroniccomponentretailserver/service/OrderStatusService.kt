@@ -3,12 +3,14 @@ package org.example.electroniccomponentretailserver.service
 import org.example.electroniccomponentretailserver.entity.OrderStatus
 import org.example.electroniccomponentretailserver.repository.OrderStatusRepository
 import org.example.electroniccomponentretailserver.updateEntity
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
 class OrderStatusService(private val orderStatusRepository: OrderStatusRepository) {
 
-    fun getAllOrderStatuss(): List<OrderStatus> = orderStatusRepository.findAll()
+    fun getAllOrderStatuss(pageable: Pageable): Page<OrderStatus> = orderStatusRepository.findAll(pageable)
 
     fun getOrderStatusById(id: Byte): OrderStatus? = orderStatusRepository.findById(id).orElse(null)
 

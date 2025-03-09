@@ -3,12 +3,14 @@ package org.example.electroniccomponentretailserver.service
 import org.example.electroniccomponentretailserver.entity.AccountRole
 import org.example.electroniccomponentretailserver.repository.AccountRoleRepository
 import org.example.electroniccomponentretailserver.updateEntity
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
 class AccountRoleService(private val accountRoleRepository: AccountRoleRepository) {
 
-    fun getAllAccountRoles(): List<AccountRole> = accountRoleRepository.findAll()
+    fun getAllAccountRoles(pageable: Pageable): Page<AccountRole> = accountRoleRepository.findAll(pageable)
 
     fun getAccountRoleById(id: Byte): AccountRole? = accountRoleRepository.findById(id).orElse(null)
 

@@ -3,12 +3,14 @@ package org.example.electroniccomponentretailserver.service
 import org.example.electroniccomponentretailserver.entity.Administrator
 import org.example.electroniccomponentretailserver.repository.AdministratorRepository
 import org.example.electroniccomponentretailserver.updateEntity
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
 class AdministratorService(private val administratorRepository: AdministratorRepository) {
 
-    fun getAllAdministrators(): List<Administrator> = administratorRepository.findAll()
+    fun getAllAdministrators(pageable: Pageable): Page<Administrator> = administratorRepository.findAll(pageable)
 
     fun getAdministratorById(id: Int): Administrator? = administratorRepository.findById(id).orElse(null)
 

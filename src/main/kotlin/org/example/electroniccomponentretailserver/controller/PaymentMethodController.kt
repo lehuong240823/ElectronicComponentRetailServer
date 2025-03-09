@@ -2,7 +2,10 @@ package org.example.electroniccomponentretailserver.controller
 
 import org.example.electroniccomponentretailserver.entity.PaymentMethod
 import org.example.electroniccomponentretailserver.service.PaymentMethodService
-import org.springframework.http.*
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -10,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 class PaymentMethodController(private val paymentMethodService: PaymentMethodService) {
 
     @GetMapping
-    fun getAllPaymentMethods(): List<PaymentMethod> = paymentMethodService.getAllPaymentMethods()
+    fun getAllPaymentMethods(@PageableDefault(size = 10) pageable: Pageable): Page<PaymentMethod> = paymentMethodService.getAllPaymentMethods(pageable)
 
     @GetMapping("/{id}")
     fun getPaymentMethodById(@PathVariable id: Byte): ResponseEntity<PaymentMethod> {

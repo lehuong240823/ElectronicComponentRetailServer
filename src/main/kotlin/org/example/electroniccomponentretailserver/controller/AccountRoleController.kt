@@ -2,7 +2,10 @@ package org.example.electroniccomponentretailserver.controller
 
 import org.example.electroniccomponentretailserver.entity.AccountRole
 import org.example.electroniccomponentretailserver.service.AccountRoleService
-import org.springframework.http.*
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -10,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 class AccountRoleController(private val accountRoleService: AccountRoleService) {
 
     @GetMapping
-    fun getAllAccountRoles(): List<AccountRole> = accountRoleService.getAllAccountRoles()
+    fun getAllAccountRoles(@PageableDefault(size = 10) pageable: Pageable): Page<AccountRole> = accountRoleService.getAllAccountRoles(pageable)
 
     @GetMapping("/{id}")
     fun getAccountRoleById(@PathVariable id: Byte): ResponseEntity<AccountRole> {

@@ -3,12 +3,14 @@ package org.example.electroniccomponentretailserver.service
 import org.example.electroniccomponentretailserver.entity.JobPosition
 import org.example.electroniccomponentretailserver.repository.JobPositionRepository
 import org.example.electroniccomponentretailserver.updateEntity
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
 class JobPositionService(private val jobPositionRepository: JobPositionRepository) {
 
-    fun getAllJobPositions(): List<JobPosition> = jobPositionRepository.findAll()
+    fun getAllJobPositions(pageable: Pageable): Page<JobPosition> = jobPositionRepository.findAll(pageable)
 
     fun getJobPositionById(id: Byte): JobPosition? = jobPositionRepository.findById(id).orElse(null)
 

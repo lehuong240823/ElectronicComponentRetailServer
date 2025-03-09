@@ -1,20 +1,21 @@
 package org.example.electroniccomponentretailserver.entity
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import org.hibernate.annotations.OnDelete
 import org.hibernate.annotations.OnDeleteAction
 import java.math.BigDecimal
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 @Entity
-@Table(name = "product", schema = "e-commerce", indexes = [
-    Index(name = "category_id", columnList = "category_id"),
-    Index(name = "provider_id", columnList = "provider_id"),
-    Index(name = "product_status_id", columnList = "product_status_id")
-])
+@Table(
+    name = "product", schema = "e-commerce", indexes = [
+        Index(name = "category_id", columnList = "category_id"),
+        Index(name = "provider_id", columnList = "provider_id"),
+        Index(name = "product_status_id", columnList = "product_status_id")
+    ]
+)
 class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id", nullable = false)
     var id: Int? = null
 

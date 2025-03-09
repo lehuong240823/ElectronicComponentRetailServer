@@ -2,7 +2,10 @@ package org.example.electroniccomponentretailserver.controller
 
 import org.example.electroniccomponentretailserver.entity.AccessLevel
 import org.example.electroniccomponentretailserver.service.AccessLevelService
-import org.springframework.http.*
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -10,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 class AccessLevelController(private val accessLevelService: AccessLevelService) {
 
     @GetMapping
-    fun getAllAccessLevels(): List<AccessLevel> = accessLevelService.getAllAccessLevels()
+    fun getAllAccessLevels(@PageableDefault(size = 10) pageable: Pageable): Page<AccessLevel> = accessLevelService.getAllAccessLevels(pageable)
 
     @GetMapping("/{id}")
     fun getAccessLevelById(@PathVariable id: Byte): ResponseEntity<AccessLevel> {

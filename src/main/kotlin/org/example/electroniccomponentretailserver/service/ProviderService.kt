@@ -3,12 +3,14 @@ package org.example.electroniccomponentretailserver.service
 import org.example.electroniccomponentretailserver.entity.Provider
 import org.example.electroniccomponentretailserver.repository.ProviderRepository
 import org.example.electroniccomponentretailserver.updateEntity
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
 class ProviderService(private val providerRepository: ProviderRepository) {
 
-    fun getAllProviders(): List<Provider> = providerRepository.findAll()
+    fun getAllProviders(pageable: Pageable): Page<Provider> = providerRepository.findAll(pageable)
 
     fun getProviderById(id: Int): Provider? = providerRepository.findById(id).orElse(null)
 

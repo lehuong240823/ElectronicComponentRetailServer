@@ -3,12 +3,14 @@ package org.example.electroniccomponentretailserver.service
 import org.example.electroniccomponentretailserver.entity.ReviewImage
 import org.example.electroniccomponentretailserver.repository.ReviewImageRepository
 import org.example.electroniccomponentretailserver.updateEntity
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
 class ReviewImageService(private val reviewImageRepository: ReviewImageRepository) {
 
-    fun getAllReviewImages(): List<ReviewImage> = reviewImageRepository.findAll()
+    fun getAllReviewImages(pageable: Pageable): Page<ReviewImage> = reviewImageRepository.findAll(pageable)
 
     fun getReviewImageById(id: Int): ReviewImage? = reviewImageRepository.findById(id).orElse(null)
 

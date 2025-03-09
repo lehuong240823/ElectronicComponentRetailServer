@@ -3,12 +3,14 @@ package org.example.electroniccomponentretailserver.service
 import org.example.electroniccomponentretailserver.entity.PaymentMethod
 import org.example.electroniccomponentretailserver.repository.PaymentMethodRepository
 import org.example.electroniccomponentretailserver.updateEntity
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
 class PaymentMethodService(private val paymentMethodRepository: PaymentMethodRepository) {
 
-    fun getAllPaymentMethods(): List<PaymentMethod> = paymentMethodRepository.findAll()
+    fun getAllPaymentMethods(pageable: Pageable): Page<PaymentMethod> = paymentMethodRepository.findAll(pageable)
 
     fun getPaymentMethodById(id: Byte): PaymentMethod? = paymentMethodRepository.findById(id).orElse(null)
 

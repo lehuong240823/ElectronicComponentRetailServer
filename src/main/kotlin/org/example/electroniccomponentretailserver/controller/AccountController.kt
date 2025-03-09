@@ -2,7 +2,10 @@ package org.example.electroniccomponentretailserver.controller
 
 import org.example.electroniccomponentretailserver.entity.Account
 import org.example.electroniccomponentretailserver.service.AccountService
-import org.springframework.http.*
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -10,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 class AccountController(private val accountService: AccountService) {
 
     @GetMapping
-    fun getAllAccounts(): List<Account> = accountService.getAllAccounts()
+    fun getAllAccounts(@PageableDefault(size = 10) pageable: Pageable): Page<Account> = accountService.getAllAccounts(pageable)
 
     @GetMapping("/{id}")
     fun getAccountById(@PathVariable id: Int): ResponseEntity<Account> {

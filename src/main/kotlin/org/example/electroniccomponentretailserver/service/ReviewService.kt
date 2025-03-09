@@ -3,12 +3,14 @@ package org.example.electroniccomponentretailserver.service
 import org.example.electroniccomponentretailserver.entity.Review
 import org.example.electroniccomponentretailserver.repository.ReviewRepository
 import org.example.electroniccomponentretailserver.updateEntity
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
 class ReviewService(private val reviewRepository: ReviewRepository) {
 
-    fun getAllReviews(): List<Review> = reviewRepository.findAll()
+    fun getAllReviews(pageable: Pageable): Page<Review> = reviewRepository.findAll(pageable)
 
     fun getReviewById(id: Int): Review? = reviewRepository.findById(id).orElse(null)
 

@@ -1,14 +1,14 @@
 package org.example.electroniccomponentretailserver.controller
 
 import jakarta.servlet.http.HttpServletRequest
+import org.springframework.boot.web.servlet.error.ErrorController
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class ErrorController {
+class CustomErrorController: ErrorController {
 
     @RequestMapping("/error")
     fun handleError(request: HttpServletRequest): ResponseEntity<String> {

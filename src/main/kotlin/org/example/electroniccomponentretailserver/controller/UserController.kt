@@ -2,7 +2,10 @@ package org.example.electroniccomponentretailserver.controller
 
 import org.example.electroniccomponentretailserver.entity.User
 import org.example.electroniccomponentretailserver.service.UserService
-import org.springframework.http.*
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -10,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 class UserController(private val userService: UserService) {
 
     @GetMapping
-    fun getAllUsers(): List<User> = userService.getAllUsers()
+    fun getAllUsers(@PageableDefault(size = 10) pageable: Pageable): Page<User> = userService.getAllUsers(pageable)
 
     @GetMapping("/{id}")
     fun getUserById(@PathVariable id: Int): ResponseEntity<User> {

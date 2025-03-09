@@ -3,12 +3,14 @@ package org.example.electroniccomponentretailserver.service
 import org.example.electroniccomponentretailserver.entity.AccessLevel
 import org.example.electroniccomponentretailserver.repository.AccessLevelRepository
 import org.example.electroniccomponentretailserver.updateEntity
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
 class AccessLevelService(private val accessLevelRepository: AccessLevelRepository) {
 
-    fun getAllAccessLevels(): List<AccessLevel> = accessLevelRepository.findAll()
+    fun getAllAccessLevels(pageable: Pageable): Page<AccessLevel> = accessLevelRepository.findAll(pageable)
 
     fun getAccessLevelById(id: Byte): AccessLevel? = accessLevelRepository.findById(id).orElse(null)
 

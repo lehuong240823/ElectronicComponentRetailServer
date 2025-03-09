@@ -3,12 +3,14 @@ package org.example.electroniccomponentretailserver.service
 import org.example.electroniccomponentretailserver.entity.Cart
 import org.example.electroniccomponentretailserver.repository.CartRepository
 import org.example.electroniccomponentretailserver.updateEntity
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
 class CartService(private val cartRepository: CartRepository) {
 
-    fun getAllCarts(): List<Cart> = cartRepository.findAll()
+    fun getAllCarts(pageable: Pageable): Page<Cart> = cartRepository.findAll(pageable)
 
     fun getCartById(id: Int): Cart? = cartRepository.findById(id).orElse(null)
 

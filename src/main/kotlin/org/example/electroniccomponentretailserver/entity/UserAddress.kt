@@ -2,19 +2,22 @@ package org.example.electroniccomponentretailserver.entity
 
 import jakarta.persistence.*
 import java.math.BigDecimal
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 @Entity
-@Table(name = "user_address", schema = "e-commerce", indexes = [
-    Index(name = "user_id", columnList = "user_id")
-])
+@Table(
+    name = "user_address", schema = "e-commerce", indexes = [
+        Index(name = "user_id", columnList = "user_id")
+    ]
+)
 class UserAddress {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_address_id", nullable = false)
     var id: Int? = null
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     var user: User? = null
 
     @Column(name = "name", length = 100)

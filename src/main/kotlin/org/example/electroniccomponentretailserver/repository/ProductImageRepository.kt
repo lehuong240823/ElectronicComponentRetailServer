@@ -1,7 +1,10 @@
 package org.example.electroniccomponentretailserver.repository
 
 import org.example.electroniccomponentretailserver.entity.ProductImage
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface ProductImageRepository : JpaRepository<ProductImage, Int> {
+interface ProductImageRepository: JpaRepository<ProductImage, Int> {
+    override fun findAll(pageable: Pageable): Page<ProductImage>
 }
