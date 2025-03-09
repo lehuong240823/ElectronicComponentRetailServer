@@ -27,4 +27,6 @@ class AccountService(private val accountRepository: AccountRepository) {
     }
 
     fun deleteAccount(id: Int) = accountRepository.deleteById(id)
+
+    fun getAccountByEmail(email: String): Account? = accountRepository.findAccountByEmail(email).orElse(null)
 }

@@ -35,4 +35,10 @@ class AccountController(private val accountService: AccountService) {
         accountService.deleteAccount(id)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/email/{email}")
+    fun getAccountByEmail(@PathVariable email: String): ResponseEntity<Account> {
+        val account = accountService.getAccountByEmail(email)
+        return if (account != null) ResponseEntity.ok(account) else ResponseEntity.notFound().build()
+    }
 }
