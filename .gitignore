@@ -43,3 +43,4 @@ out/
 .env
 Generator.kt
 GeneratorKt.run.xml
+/src/main/kotlin/org/example/electroniccomponentretailserver/template/
