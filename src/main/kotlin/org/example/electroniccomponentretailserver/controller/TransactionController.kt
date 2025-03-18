@@ -35,4 +35,19 @@ class TransactionController(private val transactionService: TransactionService) 
         transactionService.deleteTransaction(id)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/payment-method/id/{paymentMethodId}")
+    fun getTransactionsByPaymentMethodId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("paymentMethodId") paymentMethodId: Byte): Page<Transaction> {
+        return transactionService.getTransactionsByPaymentMethodId(pageable, paymentMethodId)
+    }
+
+    @GetMapping("/transaction-status/id/{transactionStatusId}")
+    fun getTransactionsByTransactionStatusId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("transactionStatusId") transactionStatusId: Byte): Page<Transaction> {
+        return transactionService.getTransactionsByTransactionStatusId(pageable, transactionStatusId)
+    }
+
+    @GetMapping("/order/id/{orderId}")
+    fun getTransactionsByOrderId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("orderId") orderId: Int): Page<Transaction> {
+        return transactionService.getTransactionsByOrderId(pageable, orderId)
+    }
 }

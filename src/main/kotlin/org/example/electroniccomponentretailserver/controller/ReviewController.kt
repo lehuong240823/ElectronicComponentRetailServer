@@ -35,4 +35,9 @@ class ReviewController(private val reviewService: ReviewService) {
         reviewService.deleteReview(id)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/order-item/id/{orderItemId}")
+    fun getReviewsByOrderItemId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("orderItemId") orderItemId: Int): Page<Review> {
+        return reviewService.getReviewsByOrderItemId(pageable, orderItemId)
+    }
 }

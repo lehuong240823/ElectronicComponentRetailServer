@@ -35,4 +35,20 @@ class AdministratorController(private val administratorService: AdministratorSer
         administratorService.deleteAdministrator(id)
         return ResponseEntity.noContent().build()
     }
+
+
+    @GetMapping("/job-position/id/{jobPositionId}")
+    fun getAdministratorsByJobPositionId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("jobPositionId") jobPositionId: Byte): Page<Administrator> {
+        return administratorService.getAdministratorsByJobPositionId(pageable, jobPositionId)
+    }
+
+    @GetMapping("/access-level/id/{accessLevelId}")
+    fun getAdministratorsByAccessLevelId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("accessLevelId") accessLevelId: Byte): Page<Administrator> {
+        return administratorService.getAdministratorsByAccessLevelId(pageable, accessLevelId)
+    }
+
+    @GetMapping("/account/id/{accountId}")
+    fun getAdministratorsByAccountId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("accountId") accountId: Int): Page<Administrator> {
+        return administratorService.getAdministratorsByAccountId(pageable, accountId)
+    }
 }

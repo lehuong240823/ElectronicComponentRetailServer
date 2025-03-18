@@ -27,4 +27,6 @@ class ReviewImageService(private val reviewImageRepository: ReviewImageRepositor
     }
 
     fun deleteReviewImage(id: Int) = reviewImageRepository.deleteById(id)
+
+    fun getReviewImagesByReviewId(pageable: Pageable, reviewId: Int): Page<ReviewImage> = reviewImageRepository.findReviewImagesByReview_Id(pageable, reviewId)
 }

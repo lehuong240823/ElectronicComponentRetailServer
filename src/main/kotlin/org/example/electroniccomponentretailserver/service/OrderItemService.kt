@@ -27,4 +27,8 @@ class OrderItemService(private val orderItemRepository: OrderItemRepository) {
     }
 
     fun deleteOrderItem(id: Int) = orderItemRepository.deleteById(id)
+
+    fun getOrderItemsByOrderId(pageable: Pageable, orderId: Int): Page<OrderItem> = orderItemRepository.findOrderItemsByOrder_Id(pageable, orderId)
+
+    fun getOrderItemsByProductId(pageable: Pageable, productId: Int): Page<OrderItem> = orderItemRepository.findOrderItemsByProduct_Id(pageable, productId)
 }

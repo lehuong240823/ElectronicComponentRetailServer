@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 @Service
 class UserAddressService(private val userAddressRepository: UserAddressRepository) {
 
-    fun getAllUserAddresss(pageable: Pageable): Page<UserAddress> = userAddressRepository.findAll(pageable)
+    fun getAllUserAddresses(pageable: Pageable): Page<UserAddress> = userAddressRepository.findAll(pageable)
 
     fun getUserAddressById(id: Int): UserAddress? = userAddressRepository.findById(id).orElse(null)
 
@@ -27,4 +27,6 @@ class UserAddressService(private val userAddressRepository: UserAddressRepositor
     }
 
     fun deleteUserAddress(id: Int) = userAddressRepository.deleteById(id)
+
+    fun getUserAddressesByUserId(pageable: Pageable, userId: Int): Page<UserAddress> = userAddressRepository.findUserAddressesByUser_Id(pageable, userId)
 }

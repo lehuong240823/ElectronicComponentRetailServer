@@ -35,4 +35,14 @@ class CartController(private val cartService: CartService) {
         cartService.deleteCart(id)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/user/id/{userId}")
+    fun getCartsByUserId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("userId") userId: Int): Page<Cart> {
+        return cartService.getCartsByUserId(pageable, userId)
+    }
+
+    @GetMapping("/product/id/{productId}")
+    fun getCartsByProductId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("productId") productId: Int): Page<Cart> {
+        return cartService.getCartsByProductId(pageable, productId)
+    }
 }

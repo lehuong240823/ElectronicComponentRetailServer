@@ -27,4 +27,6 @@ class ReviewService(private val reviewRepository: ReviewRepository) {
     }
 
     fun deleteReview(id: Int) = reviewRepository.deleteById(id)
+
+    fun getReviewsByOrderItemId(pageable: Pageable, orderItemId: Int): Page<Review> = reviewRepository.findReviewsByOrderItem_Id(pageable, orderItemId)
 }

@@ -9,11 +9,11 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/order-statuss")
+@RequestMapping("/api/order-status")
 class OrderStatusController(private val orderStatusService: OrderStatusService) {
 
     @GetMapping
-    fun getAllOrderStatuss(@PageableDefault(size = 10) pageable: Pageable): Page<OrderStatus> = orderStatusService.getAllOrderStatuss(pageable)
+    fun getAllOrderStatuses(@PageableDefault(size = 10) pageable: Pageable): Page<OrderStatus> = orderStatusService.getAllOrderStatuses(pageable)
 
     @GetMapping("/{id}")
     fun getOrderStatusById(@PathVariable id: Byte): ResponseEntity<OrderStatus> {

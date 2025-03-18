@@ -35,4 +35,19 @@ class OrderController(private val orderService: OrderService) {
         orderService.deleteOrder(id)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/order-status/id/{orderStatusId}")
+    fun getOrdersByOrderStatusId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("orderStatusId") orderStatusId: Byte): Page<Order> {
+        return orderService.getOrdersByOrderStatusId(pageable, orderStatusId)
+    }
+
+    @GetMapping("/user/id/{userId}")
+    fun getOrdersByUserId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("userId") userId: Int): Page<Order> {
+        return orderService.getOrdersByUserId(pageable, userId)
+    }
+
+    @GetMapping("/voucher/id/{voucherId}")
+    fun getOrdersByVoucherId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("voucherId") voucherId: Int): Page<Order> {
+        return orderService.getOrdersByVoucherId(pageable, voucherId)
+    }
 }

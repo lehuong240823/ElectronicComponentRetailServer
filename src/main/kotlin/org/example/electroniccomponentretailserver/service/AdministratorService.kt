@@ -27,4 +27,10 @@ class AdministratorService(private val administratorRepository: AdministratorRep
     }
 
     fun deleteAdministrator(id: Int) = administratorRepository.deleteById(id)
+
+    fun getAdministratorsByJobPositionId(pageable: Pageable, jobPositionId: Byte): Page<Administrator> = administratorRepository.findAdministratorsByJobPosition_Id(pageable, jobPositionId)
+
+    fun getAdministratorsByAccessLevelId(pageable: Pageable, accessLevelId: Byte): Page<Administrator> = administratorRepository.findAdministratorsByAccessLevel_Id(pageable, accessLevelId)
+
+    fun getAdministratorsByAccountId(pageable: Pageable, accountId: Int): Page<Administrator> = administratorRepository.findAdministratorsByAccount_Id(pageable, accountId)
 }

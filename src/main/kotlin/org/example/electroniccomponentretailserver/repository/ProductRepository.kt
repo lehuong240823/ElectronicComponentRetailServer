@@ -7,4 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface ProductRepository: JpaRepository<Product, Int> {
     override fun findAll(pageable: Pageable): Page<Product>
+    fun findProductsByProductStatus_Id(pageable: Pageable, productStatusId: Byte): Page<Product>
+    fun findProductsByCategory_Id(pageable: Pageable, categoryId: Int): Page<Product>
+    fun findProductsByProvider_Id(pageable: Pageable, providerId: Int): Page<Product>
 }

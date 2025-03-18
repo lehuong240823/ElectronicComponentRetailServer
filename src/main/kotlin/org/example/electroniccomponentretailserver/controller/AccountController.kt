@@ -1,6 +1,8 @@
 package org.example.electroniccomponentretailserver.controller
 
 import org.example.electroniccomponentretailserver.entity.Account
+import org.example.electroniccomponentretailserver.entity.AccountRole
+import org.example.electroniccomponentretailserver.entity.AccountStatus
 import org.example.electroniccomponentretailserver.service.AccountService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -37,8 +39,17 @@ class AccountController(private val accountService: AccountService) {
     }
 
     @GetMapping("/email/{email}")
-    fun getAccountByEmail(@PathVariable("email") email: String): ResponseEntity<Account> {
-        val account = accountService.getAccountByEmail(email)
-        return if (account != null) ResponseEntity.ok(account) else ResponseEntity.notFound().build()
+    fun getAccountsByEmail(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("email") email: String): Page<Account> {
+        return accountService.getAccountsByEmail(pageable, email)
+    }
+
+    @GetMapping("/account-role/id/{accountRoleId}")
+    fun getAccountsByAccountRoleId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("accountRoleId") accountRoleId: Byte): Page<Account> {
+        return accountService.getAccountsByAccountRoleId(pageable, accountRoleId)
+    }
+
+    @GetMapping("/account-status/id/{accountStatusId}")
+    fun getAccountsByAccountStatusId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("accountStatusId") accountStatusId: Byte): Page<Account> {
+        return accountService.getAccountsByAccountStatusId(pageable, accountStatusId)
     }
 }

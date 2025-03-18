@@ -27,4 +27,8 @@ class UserPaymentService(private val userPaymentRepository: UserPaymentRepositor
     }
 
     fun deleteUserPayment(id: Int) = userPaymentRepository.deleteById(id)
+
+    fun getUserPaymentsByPaymentMethodId(pageable: Pageable, paymentMethodId: Byte): Page<UserPayment> = userPaymentRepository.findUserPaymentsByPaymentMethod_Id(pageable, paymentMethodId)
+
+    fun getUserPaymentsByUserId(pageable: Pageable, userId: Int): Page<UserPayment> = userPaymentRepository.findUserPaymentsByUser_Id(pageable, userId)
 }

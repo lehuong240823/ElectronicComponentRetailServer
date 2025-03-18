@@ -35,4 +35,14 @@ class VoucherRedemptionController(private val voucherRedemptionService: VoucherR
         voucherRedemptionService.deleteVoucherRedemption(id)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/voucher/id/{voucherId}")
+    fun getVoucherRedemptionsByVoucherId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("voucherId") voucherId: Int): Page<VoucherRedemption> {
+        return voucherRedemptionService.getVoucherRedemptionsByVoucherId(pageable, voucherId)
+    }
+
+    @GetMapping("/user/id/{userId}")
+    fun getVoucherRedemptionsByUserId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("userId") userId: Int): Page<VoucherRedemption> {
+        return voucherRedemptionService.getVoucherRedemptionsByUserId(pageable, userId)
+    }
 }

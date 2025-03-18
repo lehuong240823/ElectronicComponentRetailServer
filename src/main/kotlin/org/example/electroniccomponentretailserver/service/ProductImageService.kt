@@ -27,4 +27,6 @@ class ProductImageService(private val productImageRepository: ProductImageReposi
     }
 
     fun deleteProductImage(id: Int) = productImageRepository.deleteById(id)
+
+    fun getProductImagesByProductId(pageable: Pageable, productId: Int): Page<ProductImage> = productImageRepository.findProductImagesByProduct_Id(pageable, productId)
 }

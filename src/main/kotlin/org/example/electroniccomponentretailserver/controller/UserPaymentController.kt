@@ -35,4 +35,14 @@ class UserPaymentController(private val userPaymentService: UserPaymentService) 
         userPaymentService.deleteUserPayment(id)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/payment-method/id/{paymentMethodId}")
+    fun getUserPaymentsByPaymentMethodId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("paymentMethodId") paymentMethodId: Byte): Page<UserPayment> {
+        return userPaymentService.getUserPaymentsByPaymentMethodId(pageable, paymentMethodId)
+    }
+
+    @GetMapping("/user/id/{userId}")
+    fun getUserPaymentsByUserId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("userId") userId: Int): Page<UserPayment> {
+        return userPaymentService.getUserPaymentsByUserId(pageable, userId)
+    }
 }

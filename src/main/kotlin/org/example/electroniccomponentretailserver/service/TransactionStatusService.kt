@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 @Service
 class TransactionStatusService(private val transactionStatusRepository: TransactionStatusRepository) {
 
-    fun getAllTransactionStatuss(pageable: Pageable): Page<TransactionStatus> = transactionStatusRepository.findAll(pageable)
+    fun getAllTransactionStatuses(pageable: Pageable): Page<TransactionStatus> = transactionStatusRepository.findAll(pageable)
 
     fun getTransactionStatusById(id: Byte): TransactionStatus? = transactionStatusRepository.findById(id).orElse(null)
 

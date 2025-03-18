@@ -35,4 +35,9 @@ class ProductImageController(private val productImageService: ProductImageServic
         productImageService.deleteProductImage(id)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/product/id/{productId}")
+    fun getProductImagesByProductId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("productId") productId: Int): Page<ProductImage> {
+        return productImageService.getProductImagesByProductId(pageable, productId)
+    }
 }

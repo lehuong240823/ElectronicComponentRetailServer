@@ -27,4 +27,6 @@ class VoucherService(private val voucherRepository: VoucherRepository) {
     }
 
     fun deleteVoucher(id: Int) = voucherRepository.deleteById(id)
+
+    fun getVouchersByVoucherTypeId(pageable: Pageable, voucherTypeId: Byte): Page<Voucher> = voucherRepository.findVouchersByVoucherType_Id(pageable, voucherTypeId)
 }

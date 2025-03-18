@@ -1,6 +1,8 @@
 package org.example.electroniccomponentretailserver.service
 
 import org.example.electroniccomponentretailserver.entity.Account
+import org.example.electroniccomponentretailserver.entity.AccountRole
+import org.example.electroniccomponentretailserver.entity.AccountStatus
 import org.example.electroniccomponentretailserver.repository.AccountRepository
 import org.example.electroniccomponentretailserver.updateEntity
 import org.springframework.data.domain.Page
@@ -28,5 +30,9 @@ class AccountService(private val accountRepository: AccountRepository) {
 
     fun deleteAccount(id: Int) = accountRepository.deleteById(id)
 
-    fun getAccountByEmail(email: String): Account? = accountRepository.findAccountByEmail(email).orElse(null)
+    fun getAccountsByEmail(pageable: Pageable, email: String): Page<Account> = accountRepository.findAccountsByEmail(pageable, email)
+
+    fun getAccountsByAccountRoleId(pageable: Pageable, accountRoleId: Byte): Page<Account> = accountRepository.findAccountsByAccountRole_Id(pageable, accountRoleId)
+
+    fun getAccountsByAccountStatusId(pageable: Pageable, accountStatusId: Byte): Page<Account> = accountRepository.findAccountsByAccountStatus_Id(pageable, accountStatusId)
 }

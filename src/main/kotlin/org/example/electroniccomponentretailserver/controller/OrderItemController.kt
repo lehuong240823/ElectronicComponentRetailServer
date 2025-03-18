@@ -35,4 +35,14 @@ class OrderItemController(private val orderItemService: OrderItemService) {
         orderItemService.deleteOrderItem(id)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/order/id/{orderId}")
+    fun getOrderItemsByOrderId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("orderId") orderId: Int): Page<OrderItem> {
+        return orderItemService.getOrderItemsByOrderId(pageable, orderId)
+    }
+
+    @GetMapping("/product/id/{productId}")
+    fun getOrderItemsByProductId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("productId") productId: Int): Page<OrderItem> {
+        return orderItemService.getOrderItemsByProductId(pageable, productId)
+    }
 }

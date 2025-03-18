@@ -27,4 +27,8 @@ class CartService(private val cartRepository: CartRepository) {
     }
 
     fun deleteCart(id: Int) = cartRepository.deleteById(id)
+
+    fun getCartsByUserId(pageable: Pageable, userId: Int): Page<Cart> = cartRepository.findCartsByUser_Id(pageable, userId)
+
+    fun getCartsByProductId(pageable: Pageable, productId: Int): Page<Cart> = cartRepository.findCartsByProduct_Id(pageable, productId)
 }

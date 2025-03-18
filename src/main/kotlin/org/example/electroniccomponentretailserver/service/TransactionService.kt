@@ -27,4 +27,10 @@ class TransactionService(private val transactionRepository: TransactionRepositor
     }
 
     fun deleteTransaction(id: Int) = transactionRepository.deleteById(id)
+
+    fun getTransactionsByPaymentMethodId(pageable: Pageable, paymentMethodId: Byte): Page<Transaction> = transactionRepository.findTransactionsByPaymentMethod_Id(pageable, paymentMethodId)
+
+    fun getTransactionsByTransactionStatusId(pageable: Pageable, transactionStatusId: Byte): Page<Transaction> = transactionRepository.findTransactionsByTransactionStatus_Id(pageable, transactionStatusId)
+
+    fun getTransactionsByOrderId(pageable: Pageable, orderId: Int): Page<Transaction> = transactionRepository.findTransactionsByOrder_Id(pageable, orderId)
 }

@@ -35,4 +35,9 @@ class ReviewImageController(private val reviewImageService: ReviewImageService) 
         reviewImageService.deleteReviewImage(id)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/review/id/{reviewId}")
+    fun getReviewImagesByReviewId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("reviewId") reviewId: Int): Page<ReviewImage> {
+        return reviewImageService.getReviewImagesByReviewId(pageable, reviewId)
+    }
 }

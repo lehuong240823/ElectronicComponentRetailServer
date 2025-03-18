@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface UserAddressRepository: JpaRepository<UserAddress, Int> {
     override fun findAll(pageable: Pageable): Page<UserAddress>
+    fun findUserAddressesByUser_Id(pageable: Pageable, userId: Int): Page<UserAddress>
 }

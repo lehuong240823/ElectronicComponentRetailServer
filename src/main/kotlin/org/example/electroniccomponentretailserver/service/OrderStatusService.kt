@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 @Service
 class OrderStatusService(private val orderStatusRepository: OrderStatusRepository) {
 
-    fun getAllOrderStatuss(pageable: Pageable): Page<OrderStatus> = orderStatusRepository.findAll(pageable)
+    fun getAllOrderStatuses(pageable: Pageable): Page<OrderStatus> = orderStatusRepository.findAll(pageable)
 
     fun getOrderStatusById(id: Byte): OrderStatus? = orderStatusRepository.findById(id).orElse(null)
 

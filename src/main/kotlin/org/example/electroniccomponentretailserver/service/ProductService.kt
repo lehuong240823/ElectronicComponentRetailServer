@@ -27,4 +27,10 @@ class ProductService(private val productRepository: ProductRepository) {
     }
 
     fun deleteProduct(id: Int) = productRepository.deleteById(id)
+
+    fun getProductsByProductStatusId(pageable: Pageable, productStatusId: Byte): Page<Product> = productRepository.findProductsByProductStatus_Id(pageable, productStatusId)
+
+    fun getProductsByCategoryId(pageable: Pageable, categoryId: Int): Page<Product> = productRepository.findProductsByCategory_Id(pageable, categoryId)
+
+    fun getProductsByProviderId(pageable: Pageable, providerId: Int): Page<Product> = productRepository.findProductsByProvider_Id(pageable, providerId)
 }

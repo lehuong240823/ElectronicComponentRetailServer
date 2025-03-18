@@ -35,4 +35,19 @@ class ProductController(private val productService: ProductService) {
         productService.deleteProduct(id)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/product-status/id/{productStatusId}")
+    fun getProductsByProductStatusId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("productStatusId") productStatusId: Byte): Page<Product> {
+        return productService.getProductsByProductStatusId(pageable, productStatusId)
+    }
+
+    @GetMapping("/category/id/{categoryId}")
+    fun getProductsByCategoryId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("categoryId") categoryId: Int): Page<Product> {
+        return productService.getProductsByCategoryId(pageable, categoryId)
+    }
+
+    @GetMapping("/provider/id/{providerId}")
+    fun getProductsByProviderId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("providerId") providerId: Int): Page<Product> {
+        return productService.getProductsByProviderId(pageable, providerId)
+    }
 }

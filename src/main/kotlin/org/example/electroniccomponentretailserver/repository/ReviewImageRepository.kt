@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface ReviewImageRepository: JpaRepository<ReviewImage, Int> {
     override fun findAll(pageable: Pageable): Page<ReviewImage>
+    fun findReviewImagesByReview_Id(pageable: Pageable, reviewId: Int): Page<ReviewImage>
 }

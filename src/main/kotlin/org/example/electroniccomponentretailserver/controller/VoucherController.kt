@@ -35,4 +35,9 @@ class VoucherController(private val voucherService: VoucherService) {
         voucherService.deleteVoucher(id)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/voucher-type/id/{voucherTypeId}")
+    fun getVouchersByVoucherTypeId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("voucherTypeId") voucherTypeId: Byte): Page<Voucher> {
+        return voucherService.getVouchersByVoucherTypeId(pageable, voucherTypeId)
+    }
 }

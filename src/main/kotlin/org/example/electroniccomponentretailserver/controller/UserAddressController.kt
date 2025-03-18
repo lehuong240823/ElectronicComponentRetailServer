@@ -9,11 +9,11 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/user-addresss")
+@RequestMapping("/api/user-addresses")
 class UserAddressController(private val userAddressService: UserAddressService) {
 
     @GetMapping
-    fun getAllUserAddresss(@PageableDefault(size = 10) pageable: Pageable): Page<UserAddress> = userAddressService.getAllUserAddresss(pageable)
+    fun getAllUserAddresses(@PageableDefault(size = 10) pageable: Pageable): Page<UserAddress> = userAddressService.getAllUserAddresses(pageable)
 
     @GetMapping("/{id}")
     fun getUserAddressById(@PathVariable id: Int): ResponseEntity<UserAddress> {
@@ -34,5 +34,10 @@ class UserAddressController(private val userAddressService: UserAddressService) 
     fun deleteUserAddress(@PathVariable id: Int): ResponseEntity<Void> {
         userAddressService.deleteUserAddress(id)
         return ResponseEntity.noContent().build()
+    }
+
+    @GetMapping("/user/id/{userId}")
+    fun getUserAddressesByUserId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("userId") userId: Int): Page<UserAddress> {
+        return userAddressService.getUserAddressesByUserId(pageable, userId)
     }
 }

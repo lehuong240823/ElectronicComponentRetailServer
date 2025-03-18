@@ -27,4 +27,8 @@ class VoucherRedemptionService(private val voucherRedemptionRepository: VoucherR
     }
 
     fun deleteVoucherRedemption(id: Int) = voucherRedemptionRepository.deleteById(id)
+
+    fun getVoucherRedemptionsByVoucherId(pageable: Pageable, voucherId: Int): Page<VoucherRedemption> = voucherRedemptionRepository.findVoucherRedemptionsByVoucher_Id(pageable, voucherId)
+
+    fun getVoucherRedemptionsByUserId(pageable: Pageable, userId: Int): Page<VoucherRedemption> = voucherRedemptionRepository.findVoucherRedemptionsByUser_Id(pageable, userId)
 }

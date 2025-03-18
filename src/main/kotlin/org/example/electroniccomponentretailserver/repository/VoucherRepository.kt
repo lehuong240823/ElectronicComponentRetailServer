@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface VoucherRepository: JpaRepository<Voucher, Int> {
     override fun findAll(pageable: Pageable): Page<Voucher>
+    fun findVouchersByVoucherType_Id(pageable: Pageable, voucherTypeId: Byte): Page<Voucher>
 }

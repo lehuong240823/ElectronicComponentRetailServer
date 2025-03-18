@@ -35,4 +35,9 @@ class UserController(private val userService: UserService) {
         userService.deleteUser(id)
         return ResponseEntity.noContent().build()
     }
+
+    @GetMapping("/account/id/{accountId}")
+    fun getUsersByAccountId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("accountId") accountId: Int): Page<User> {
+        return userService.getUsersByAccountId(pageable, accountId)
+    }
 }
