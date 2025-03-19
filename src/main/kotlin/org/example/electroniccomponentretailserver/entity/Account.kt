@@ -9,8 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 @Table(name = "account", schema = "e-commerce", indexes = [
     Index(name = "account_role_id", columnList = "account_role_id"),
     Index(name = "account_status_id", columnList = "account_status_id")
-],  uniqueConstraints = [
-    UniqueConstraint(name = "email", columnNames = ["email"])
 ])
 class Account {
     @Id
