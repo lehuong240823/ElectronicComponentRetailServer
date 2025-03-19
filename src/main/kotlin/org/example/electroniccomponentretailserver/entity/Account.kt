@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 ])
 class Account {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id", nullable = false)
     var id: Int? = null
 

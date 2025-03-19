@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 )
 class JobPosition {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "job_position_id", nullable = false)
     var id: Byte? = null
 

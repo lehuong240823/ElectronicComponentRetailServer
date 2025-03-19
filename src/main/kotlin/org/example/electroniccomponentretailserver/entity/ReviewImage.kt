@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 )
 class ReviewImage {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_image_id", nullable = false)
     var id: Int? = null
 

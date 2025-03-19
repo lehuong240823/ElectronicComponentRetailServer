@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 )
 class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
     var id: Int? = null
 

@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 )
 class Review {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id", nullable = false)
     var id: Int? = null
 

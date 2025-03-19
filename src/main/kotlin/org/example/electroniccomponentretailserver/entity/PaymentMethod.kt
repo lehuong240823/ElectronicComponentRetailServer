@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 )
 class PaymentMethod {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "payment_method_id", nullable = false)
     var id: Byte? = null
 
