@@ -37,7 +37,8 @@ class UserController(private val userService: UserService) {
     }
 
     @GetMapping("/account/id/{accountId}")
-    fun getUsersByAccountId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("accountId") accountId: Int): Page<User> {
-        return userService.getUsersByAccountId(pageable, accountId)
+    fun getUserByAccountId(@PathVariable("accountId") accountId: Int): ResponseEntity<User> {
+        val user = userService.getUserByAccountId(accountId)
+        return if (user != null) ResponseEntity.ok(user) else ResponseEntity.notFound().build()
     }
 }

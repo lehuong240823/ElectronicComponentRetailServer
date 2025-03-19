@@ -48,7 +48,8 @@ class AdministratorController(private val administratorService: AdministratorSer
     }
 
     @GetMapping("/account/id/{accountId}")
-    fun getAdministratorsByAccountId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("accountId") accountId: Int): Page<Administrator> {
-        return administratorService.getAdministratorsByAccountId(pageable, accountId)
+    fun getAdministratorByAccountId(@PathVariable("accountId") accountId: Int): ResponseEntity<Administrator> {
+        val administrator = administratorService.getAdministratorByAccountId(accountId)
+        return if (administrator != null) ResponseEntity.ok(administrator) else ResponseEntity.notFound().build()
     }
 }

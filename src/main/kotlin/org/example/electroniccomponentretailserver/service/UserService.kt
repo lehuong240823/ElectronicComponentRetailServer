@@ -28,5 +28,5 @@ class UserService(private val userRepository: UserRepository) {
 
     fun deleteUser(id: Int) = userRepository.deleteById(id)
 
-    fun getUsersByAccountId(pageable: Pageable, accountId: Int): Page<User> = userRepository.findUsersByAccount_Id(pageable, accountId)
+    fun getUserByAccountId(accountId: Int): User? = userRepository.findUserByAccount_Id(accountId).orElse(null)
 }

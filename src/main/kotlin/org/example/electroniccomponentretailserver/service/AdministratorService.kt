@@ -32,5 +32,5 @@ class AdministratorService(private val administratorRepository: AdministratorRep
 
     fun getAdministratorsByAccessLevelId(pageable: Pageable, accessLevelId: Byte): Page<Administrator> = administratorRepository.findAdministratorsByAccessLevel_Id(pageable, accessLevelId)
 
-    fun getAdministratorsByAccountId(pageable: Pageable, accountId: Int): Page<Administrator> = administratorRepository.findAdministratorsByAccount_Id(pageable, accountId)
+    fun getAdministratorByAccountId(accountId: Int): Administrator? = administratorRepository.findAdministratorByAccount_Id(accountId).orElse(null)
 }
