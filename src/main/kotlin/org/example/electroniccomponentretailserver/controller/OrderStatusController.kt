@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/order-status")
+@RequestMapping("/api/order-statuses")
 class OrderStatusController(private val orderStatusService: OrderStatusService) {
 
     @GetMapping
