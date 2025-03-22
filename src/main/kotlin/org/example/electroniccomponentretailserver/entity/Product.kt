@@ -23,7 +23,7 @@ class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "category_id")
-    /@JsonIgnore
+    @JsonIgnore
     var category: Category? = null
 
     @ManyToOne(fetch = FetchType.LAZY)
