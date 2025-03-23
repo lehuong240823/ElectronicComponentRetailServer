@@ -53,8 +53,8 @@ class ProductController(private val productService: ProductService) {
 
     @GetMapping("/name")
     fun findProductsByNameContainingIgnoreCase(
-        @RequestParam name: String,
-        pageable: Pageable
+        @PageableDefault(size = 10) pageable: Pageable,
+        @RequestParam name: String
     ): Page<Product> {
         return productService.findProductsByNameContainingIgnoreCase(pageable, name)
     }
