@@ -39,7 +39,7 @@ class Transaction {
     @Column(name = "transaction_no", length = 20)
     var transactionNo: String? = null
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "user_payment_id")
     @JsonIgnore

@@ -10,4 +10,5 @@ interface ProductRepository: JpaRepository<Product, Int> {
     fun findProductsByProductStatus_Id(pageable: Pageable, productStatusId: Byte): Page<Product>
     fun findProductsByCategory_Id(pageable: Pageable, categoryId: Int): Page<Product>
     fun findProductsByProvider_Id(pageable: Pageable, providerId: Int): Page<Product>
+    fun findProductsByNameContainingIgnoreCase(pageable: Pageable, name: String): Page<Product>
 }

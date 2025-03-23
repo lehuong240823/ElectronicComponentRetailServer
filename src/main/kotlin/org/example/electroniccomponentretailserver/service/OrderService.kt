@@ -6,6 +6,7 @@ import org.example.electroniccomponentretailserver.updateEntity
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class OrderService(private val orderRepository: OrderRepository) {
@@ -14,7 +15,18 @@ class OrderService(private val orderRepository: OrderRepository) {
 
     fun getOrderById(id: Int): Order? = orderRepository.findById(id).orElse(null)
 
-    fun saveOrder(role: Order): Order = orderRepository.save(role)
+    //fun saveOrder(order: Order): Order = orderRepository.save(order)
+
+    @Transactional
+    fun createOrder(order: Order, cartItemIds: List<Int>): Order {
+        val id = orderRepository.createOrder(
+            order.user?.id!!,
+            order.address!!,
+            cartItemIds.joinToString(",")
+        )
+        println("iiii"+id)
+        return orderRepository.findById(id).get()
+    }
 
     fun updateOrder(id: Int, updatedOrder: Order): Order? {
         return if (orderRepository.existsById(id)) {
@@ -33,4 +45,5 @@ class OrderService(private val orderRepository: OrderRepository) {
     fun getOrdersByUserId(pageable: Pageable, userId: Int): Page<Order> = orderRepository.findOrdersByUser_Id(pageable, userId)
 
     fun getOrdersByVoucherId(pageable: Pageable, voucherId: Int): Page<Order> = orderRepository.findOrdersByVoucher_Id(pageable, voucherId)
+
 }

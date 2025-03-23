@@ -31,4 +31,6 @@ class CartService(private val cartRepository: CartRepository) {
     fun getCartsByUserId(pageable: Pageable, userId: Int): Page<Cart> = cartRepository.findCartsByUser_Id(pageable, userId)
 
     fun getCartsByProductId(pageable: Pageable, productId: Int): Page<Cart> = cartRepository.findCartsByProduct_Id(pageable, productId)
+
+    fun getCartsByUserIdAndProductId(userId: Int, productId: Int): Cart? = cartRepository.findCartsByUser_IdAndProductId(userId, productId).orElse(null)
 }

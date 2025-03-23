@@ -50,4 +50,12 @@ class ProductController(private val productService: ProductService) {
     fun getProductsByProviderId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("providerId") providerId: Int): Page<Product> {
         return productService.getProductsByProviderId(pageable, providerId)
     }
+
+    @GetMapping("/name")
+    fun findProductsByNameContainingIgnoreCase(
+        @RequestParam name: String,
+        pageable: Pageable
+    ): Page<Product> {
+        return productService.findProductsByNameContainingIgnoreCase(pageable, name)
+    }
 }

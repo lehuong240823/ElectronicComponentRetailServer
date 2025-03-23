@@ -22,7 +22,11 @@ class OrderController(private val orderService: OrderService) {
     }
 
     @PostMapping
-    fun createOrder(@RequestBody order: Order): Order = orderService.saveOrder(order)
+    fun createOrder(@RequestBody order: Order, @RequestParam cartItemIds: List<Int>): ResponseEntity<Order> {
+        println("aaa"+order.user?.fullName)
+        val createdOrder = orderService.createOrder(order, cartItemIds)
+        return ResponseEntity.ok(createdOrder)
+    }
 
     @PutMapping("/{id}")
     fun updateOrder(@PathVariable id: Int, @RequestBody updatedOrder: Order): ResponseEntity<Order> {

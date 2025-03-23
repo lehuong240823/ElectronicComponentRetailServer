@@ -33,4 +33,8 @@ class ProductService(private val productRepository: ProductRepository) {
     fun getProductsByCategoryId(pageable: Pageable, categoryId: Int): Page<Product> = productRepository.findProductsByCategory_Id(pageable, categoryId)
 
     fun getProductsByProviderId(pageable: Pageable, providerId: Int): Page<Product> = productRepository.findProductsByProvider_Id(pageable, providerId)
+
+    fun findProductsByNameContainingIgnoreCase(pageable: Pageable, name: String): Page<Product> {
+        return productRepository.findProductsByNameContainingIgnoreCase(pageable, name)
+    }
 }

@@ -45,4 +45,12 @@ class CartController(private val cartService: CartService) {
     fun getCartsByProductId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("productId") productId: Int): Page<Cart> {
         return cartService.getCartsByProductId(pageable, productId)
     }
+
+    @GetMapping("/find")
+    fun getCartByUserIdAndProductId(
+        @RequestParam userId: Int,
+        @RequestParam productId: Int
+    ): Cart? {
+        return cartService.getCartsByUserIdAndProductId(userId, productId)
+    }
 }

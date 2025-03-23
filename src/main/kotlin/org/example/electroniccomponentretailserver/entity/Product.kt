@@ -20,13 +20,13 @@ class Product {
     @Column(name = "product_id", nullable = false)
     var id: Int? = null
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "category_id")
     //@JsonIgnore
     var category: Category? = null
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "provider_id")
     //@JsonIgnore
