@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.*
 class VoucherController(private val voucherService: VoucherService) {
 
     @GetMapping
-    fun getAllVouchers(@PageableDefault(size = 10) pageable: Pageable): Page<Voucher> = voucherService.getAllVouchers(pageable)
+    fun getAllVouchers(
+        @PageableDefault(size = 10) pageable: Pageable,
+    ): Page<Voucher> = voucherService.getAllVouchers(pageable)
 
     @GetMapping("/{id}")
     fun getVoucherById(@PathVariable id: Int): ResponseEntity<Voucher> {

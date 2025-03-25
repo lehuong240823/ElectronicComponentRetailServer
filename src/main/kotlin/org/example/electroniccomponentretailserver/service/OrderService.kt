@@ -42,6 +42,8 @@ class OrderService(private val orderRepository: OrderRepository) {
 
     fun getOrdersByOrderStatusId(pageable: Pageable, orderStatusId: Byte): Page<Order> = orderRepository.findOrdersByOrderStatus_Id(pageable, orderStatusId)
 
+    fun findOrdersByOrderStatusIdAndUserId(pageable: Pageable, userId: Int, orderStatusId: Byte): Page<Order> = orderRepository.findOrdersByUser_IdAndOrderStatus_Id(pageable, userId, orderStatusId)
+
     fun getOrdersByUserId(pageable: Pageable, userId: Int): Page<Order> = orderRepository.findOrdersByUser_Id(pageable, userId)
 
     fun getOrdersByVoucherId(pageable: Pageable, voucherId: Int): Page<Order> = orderRepository.findOrdersByVoucher_Id(pageable, voucherId)

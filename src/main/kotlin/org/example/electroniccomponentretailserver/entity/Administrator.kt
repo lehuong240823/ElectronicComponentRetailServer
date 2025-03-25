@@ -17,10 +17,9 @@ class Administrator {
     @Column(name = "admin_id", nullable = false)
     var id: Int? = null
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "account_id", nullable = false)
-    @JsonIgnore
     var account: Account? = null
 
     @ManyToOne(fetch = FetchType.EAGER)

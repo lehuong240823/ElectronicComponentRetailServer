@@ -15,9 +15,8 @@ class User {
     @Column(name = "user_id", nullable = false)
     var id: Int? = null
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "account_id", nullable = false)
-    @JsonIgnore
     var account: Account? = null
 
     @Column(name = "full_name", nullable = false, length = 100)

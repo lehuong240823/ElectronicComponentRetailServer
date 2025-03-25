@@ -24,10 +24,9 @@ class OrderItem {
     @JsonIgnore
     var order: Order? = null
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "product_id")
-    @JsonIgnore
     var product: Product? = null
 
     @Column(name = "product_name")

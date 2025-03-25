@@ -15,7 +15,7 @@ class Provider {
     @Column(name = "provider_id", nullable = false)
     var id: Int? = null
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false,)
     var name: String? = null
 
     @Column(name = "type")
@@ -24,7 +24,7 @@ class Provider {
     @Column(name = "email", nullable = false, length = 50)
     var email: String? = null
 
-    @Column(name = "phone_number", length = 15)
+    @Column(name = "phone_number", nullable = false, length = 15)
     var phoneNumber: String? = null
 
     @Column(name = "address")

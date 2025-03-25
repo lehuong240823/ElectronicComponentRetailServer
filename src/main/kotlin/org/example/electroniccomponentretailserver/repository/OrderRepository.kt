@@ -14,6 +14,7 @@ import java.math.BigDecimal
 interface OrderRepository: JpaRepository<Order, Int> {
     override fun findAll(pageable: Pageable): Page<Order>
     fun findOrdersByOrderStatus_Id(pageable: Pageable, orderStatusId: Byte): Page<Order>
+    fun findOrdersByUser_IdAndOrderStatus_Id(pageable: Pageable, userId: Int, orderStatusId: Byte): Page<Order>
     fun findOrdersByUser_Id(pageable: Pageable, userId: Int): Page<Order>
     fun findOrdersByVoucher_Id(pageable: Pageable, voucherId: Int): Page<Order>
 

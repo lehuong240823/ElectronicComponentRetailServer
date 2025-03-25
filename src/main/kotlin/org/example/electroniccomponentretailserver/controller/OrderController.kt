@@ -4,6 +4,7 @@ import org.example.electroniccomponentretailserver.entity.Order
 import org.example.electroniccomponentretailserver.service.OrderService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
+import org.springframework.data.domain.Sort
 import org.springframework.data.web.PageableDefault
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -23,7 +24,6 @@ class OrderController(private val orderService: OrderService) {
 
     @PostMapping
     fun createOrder(@RequestBody order: Order, @RequestParam cartItemIds: List<Int>): ResponseEntity<Order> {
-        println("aaa"+order.user?.fullName)
         val createdOrder = orderService.createOrder(order, cartItemIds)
         return ResponseEntity.ok(createdOrder)
     }
@@ -43,6 +43,16 @@ class OrderController(private val orderService: OrderService) {
     @GetMapping("/order-status/id/{orderStatusId}")
     fun getOrdersByOrderStatusId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("orderStatusId") orderStatusId: Byte): Page<Order> {
         return orderService.getOrdersByOrderStatusId(pageable, orderStatusId)
+    }
+
+    @GetMapping("/user")
+    fun findOrdersByOrderStatusIdAndUserId(
+        @RequestParam("userId") userId: Int,
+        @RequestParam("orderStatusId") orderStatusId: Byte,
+        @PageableDefault(size = 10, sort = ["createdAt"], direction = Sort.Direction.DESC) pageable: Pageable
+    ): ResponseEntity<Page<Order>> {
+        val orders = orderService.findOrdersByOrderStatusIdAndUserId(pageable, userId, orderStatusId)
+        return ResponseEntity.ok(orders)
     }
 
     @GetMapping("/user/id/{userId}")
