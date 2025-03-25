@@ -17,9 +17,11 @@ class ProductImage {
     @Column(name = "product_image_id", nullable = false)
     var id: Int? = null
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "product_id", nullable = false)
-    @JsonIgnore
     var product: Product? = null
+
+    @Column(name = "url", nullable = false)
+    var url: String? = null
 }
