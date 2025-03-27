@@ -1,9 +1,11 @@
 package org.example.electroniccomponentretailserver.controller
 
+import org.example.electroniccomponentretailserver.entity.Order
 import org.example.electroniccomponentretailserver.entity.Transaction
 import org.example.electroniccomponentretailserver.service.TransactionService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
+import org.springframework.data.domain.Sort
 import org.springframework.data.web.PageableDefault
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -49,5 +51,20 @@ class TransactionController(private val transactionService: TransactionService) 
     @GetMapping("/order/id/{orderId}")
     fun getTransactionsByOrderId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("orderId") orderId: Int): Page<Transaction> {
         return transactionService.getTransactionsByOrderId(pageable, orderId)
+    }
+
+    @GetMapping("/user/id/{userId}")
+    fun getTransactionsByUserId(@PageableDefault(size = 10) pageable: Pageable, @PathVariable("userId") userId: Int): Page<Transaction> {
+        return transactionService.getTransactionsByUserId(pageable, userId)
+    }
+
+    @GetMapping("/user")
+    fun findOrdersByOrderStatusIdAndUserId(
+        @RequestParam("userId") userId: Int,
+        @RequestParam("transactionStatusId") transactionStatusId: Byte,
+        @PageableDefault(size = 10, sort = ["transactionTime"], direction = Sort.Direction.DESC) pageable: Pageable
+    ): ResponseEntity<Page<Transaction>> {
+        val transactions = transactionService.findTransactionsByUserIdAndTransactionStatusId(pageable, userId, transactionStatusId)
+        return ResponseEntity.ok(transactions)
     }
 }

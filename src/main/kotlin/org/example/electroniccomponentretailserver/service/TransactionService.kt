@@ -1,5 +1,6 @@
 package org.example.electroniccomponentretailserver.service
 
+import org.example.electroniccomponentretailserver.entity.Order
 import org.example.electroniccomponentretailserver.entity.Transaction
 import org.example.electroniccomponentretailserver.repository.TransactionRepository
 import org.example.electroniccomponentretailserver.updateEntity
@@ -33,4 +34,9 @@ class TransactionService(private val transactionRepository: TransactionRepositor
     fun getTransactionsByTransactionStatusId(pageable: Pageable, transactionStatusId: Byte): Page<Transaction> = transactionRepository.findTransactionsByTransactionStatus_Id(pageable, transactionStatusId)
 
     fun getTransactionsByOrderId(pageable: Pageable, orderId: Int): Page<Transaction> = transactionRepository.findTransactionsByOrder_Id(pageable, orderId)
+
+    fun findTransactionsByUserIdAndTransactionStatusId(pageable: Pageable, userId: Int, transactionStatusId: Byte): Page<Transaction> = transactionRepository.findTransactionsByUserIdAndStatus(pageable, userId, transactionStatusId)
+
+    fun getTransactionsByUserId(pageable: Pageable, userId: Int): Page<Transaction> = transactionRepository.findTransactionsByUserId(pageable, userId)
+
 }
