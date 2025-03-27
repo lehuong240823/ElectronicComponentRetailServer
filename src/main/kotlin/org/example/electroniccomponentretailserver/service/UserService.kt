@@ -6,6 +6,7 @@ import org.example.electroniccomponentretailserver.updateEntity
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UserService(private val userRepository: UserRepository) {
@@ -16,6 +17,7 @@ class UserService(private val userRepository: UserRepository) {
 
     fun saveUser(role: User): User = userRepository.save(role)
 
+    @Transactional
     fun updateUser(id: Int, updatedUser: User): User? {
         return if (userRepository.existsById(id)) {
             val existingUser: User = userRepository.findById(id).get()

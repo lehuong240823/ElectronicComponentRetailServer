@@ -6,6 +6,7 @@ import org.example.electroniccomponentretailserver.updateEntity
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class VoucherService(private val voucherRepository: VoucherRepository) {
@@ -14,8 +15,10 @@ class VoucherService(private val voucherRepository: VoucherRepository) {
 
     fun getVoucherById(id: Int): Voucher? = voucherRepository.findById(id).orElse(null)
 
+    @Transactional
     fun saveVoucher(role: Voucher): Voucher = voucherRepository.save(role)
 
+    @Transactional
     fun updateVoucher(id: Int, updatedVoucher: Voucher): Voucher? {
         return if (voucherRepository.existsById(id)) {
             val existingVoucher: Voucher = voucherRepository.findById(id).get()

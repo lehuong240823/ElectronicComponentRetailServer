@@ -24,9 +24,8 @@ class Transaction {
     @Column(name = "transaction_id", nullable = false)
     var id: Int? = null
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "order_id", nullable = false)
-    @JsonIgnore
     var order: Order? = null
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
@@ -42,7 +41,6 @@ class Transaction {
     @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "user_payment_id")
-    @JsonIgnore
     var userPayment: UserPayment? = null
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)

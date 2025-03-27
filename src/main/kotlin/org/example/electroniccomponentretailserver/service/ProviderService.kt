@@ -6,6 +6,7 @@ import org.example.electroniccomponentretailserver.updateEntity
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class ProviderService(private val providerRepository: ProviderRepository) {
@@ -14,8 +15,10 @@ class ProviderService(private val providerRepository: ProviderRepository) {
 
     fun getProviderById(id: Int): Provider? = providerRepository.findById(id).orElse(null)
 
+    @Transactional
     fun saveProvider(role: Provider): Provider = providerRepository.save(role)
 
+    @Transactional
     fun updateProvider(id: Int, updatedProvider: Provider): Provider? {
         return if (providerRepository.existsById(id)) {
             val existingProvider: Provider = providerRepository.findById(id).get()

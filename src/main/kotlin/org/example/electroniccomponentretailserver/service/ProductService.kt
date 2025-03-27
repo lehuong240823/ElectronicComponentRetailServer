@@ -6,6 +6,7 @@ import org.example.electroniccomponentretailserver.updateEntity
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class ProductService(private val productRepository: ProductRepository) {
@@ -16,6 +17,7 @@ class ProductService(private val productRepository: ProductRepository) {
 
     fun saveProduct(role: Product): Product = productRepository.save(role)
 
+    @Transactional
     fun updateProduct(id: Int, updatedProduct: Product): Product? {
         return if (productRepository.existsById(id)) {
             val existingProduct: Product = productRepository.findById(id).get()
@@ -26,6 +28,7 @@ class ProductService(private val productRepository: ProductRepository) {
         }
     }
 
+    @Transactional
     fun deleteProduct(id: Int) = productRepository.deleteById(id)
 
     fun getProductsByProductStatusId(pageable: Pageable, productStatusId: Byte): Page<Product> = productRepository.findProductsByProductStatus_Id(pageable, productStatusId)

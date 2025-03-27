@@ -6,6 +6,7 @@ import org.example.electroniccomponentretailserver.updateEntity
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CartService(private val cartRepository: CartRepository) {
@@ -14,6 +15,7 @@ class CartService(private val cartRepository: CartRepository) {
 
     fun getCartById(id: Int): Cart? = cartRepository.findById(id).orElse(null)
 
+    @Transactional
     fun saveCart(role: Cart): Cart = cartRepository.save(role)
 
     fun updateCart(id: Int, updatedCart: Cart): Cart? {

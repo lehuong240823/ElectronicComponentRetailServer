@@ -22,7 +22,22 @@ class CartController(private val cartService: CartService) {
     }
 
     @PostMapping
-    fun createCart(@RequestBody cart: Cart): Cart = cartService.saveCart(cart)
+    fun createCart(@RequestBody cart: Cart): Cart {
+        val uid = cart.user?.id ?: return throw IllegalArgumentException("User ID is required")
+        val pid = cart.product?.id ?: return throw IllegalArgumentException("Product ID is required")
+
+        return getCartByUserIdAndProductId(uid, pid)?.let { existCart ->
+            updateCart(existCart.id!!, existCart.apply {
+                var newQuantity = existCart.quantity?.plus(cart.quantity ?: 0)
+                if (newQuantity != null) {
+                    if(newQuantity>product?.stock!!){
+                        newQuantity = product?.stock
+                    }
+                }
+                quantity = newQuantity
+            }).body
+        } ?: cartService.saveCart(cart)
+    }
 
     @PutMapping("/{id}")
     fun updateCart(@PathVariable id: Int, @RequestBody updatedCart: Cart): ResponseEntity<Cart> {

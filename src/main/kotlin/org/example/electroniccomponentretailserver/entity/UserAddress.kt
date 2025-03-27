@@ -16,9 +16,8 @@ class UserAddress {
     @Column(name = "user_address_id", nullable = false)
     var id: Int? = null
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnore
     var user: User? = null
 
     @Column(name = "name", length = 100)

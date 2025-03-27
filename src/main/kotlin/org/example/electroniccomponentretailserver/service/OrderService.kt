@@ -24,10 +24,10 @@ class OrderService(private val orderRepository: OrderRepository) {
             order.address!!,
             cartItemIds.joinToString(",")
         )
-        println("iiii"+id)
         return orderRepository.findById(id).get()
     }
 
+    @Transactional
     fun updateOrder(id: Int, updatedOrder: Order): Order? {
         return if (orderRepository.existsById(id)) {
             val existingOrder: Order = orderRepository.findById(id).get()
@@ -38,6 +38,7 @@ class OrderService(private val orderRepository: OrderRepository) {
         }
     }
 
+    @Transactional
     fun deleteOrder(id: Int) = orderRepository.deleteById(id)
 
     fun getOrdersByOrderStatusId(pageable: Pageable, orderStatusId: Byte): Page<Order> = orderRepository.findOrdersByOrderStatus_Id(pageable, orderStatusId)
